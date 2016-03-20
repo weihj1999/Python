@@ -1,0 +1,52 @@
+
+如果作为产品服务器,推荐下述安装
+
+Web服务器
+webpy有一个内部的web服务器,但是只能用作部署用途. 为了部署,另外需要一个
+robust服务器,下述的一种
+  1. lighttpd(BSD),通过flup's fastcgi(BSD) (easy_install flup)
+   lighttpd:  http://trac.lighttpd.net/trac/wiki/#ReferenceDocumentation
+   
+  2. Apache(Apache)通过(mod_wsgi)
+
+数据库
+
+webpy不需要数据库,不过它支持一下数据库
+
+  1. postgresql [BSD] (doc) with psycopg2 [BSD] (doc) as the python 
+  client. (easy_install psycopg2)
+  postgresql: http://www.postgresql.org/docs/
+  psycopg2: http://www.initd.org/tracker/psycopg/wiki/PsycopgTwo
+  
+  2. mysql [GPL] (doc) with MySQLdb [CNRI] (doc) as the python client 
+  (easy_install MySQL-python)
+  mysql: http://www.mysql.org/doc/
+  MySQLdb: http://mysql-python.sourceforge.net/MySQLdb.html
+  
+  3. sqlite [Public domain] (doc) with pysqlite as python client 
+  (easy_install pysqlite).
+  sqlite: http://www.sqlite.org/docs.html
+Connection Pooling
+
+针对高流量的站点, 连接池允许webpy保持多数据库连接开放, 典型的允许快速访问
+数据库, 这是可选的,但是作为扩展策略使用
+  1. DBUtils [CNRI] (doc) (easy_install DBUtils)
+  DBUtils: http://www.webwareforpython.org/DBUtils/Docs/UsersGuide.html
+  
+模板(Templates)
+
+webpy有自己的模板系统, 允许用户让为授信的用户使用这个编辑模板,在template中
+使用类似python的语言
+  1. template.py [built-in] (doc)
+  template.py: http://webpy.org/docs/0.3/templetor
+  
+  
+用户输入(User Input)
+Markdown允许webpy用户写文本， 来个到转化的HTML文件来显示， 这个并不是必要
+的，但是我们推荐通过用户输入产生格式化的HTML
+
+  1. python-markdown [BSD] (doc)
+  http://www.freewisdom.org/projects/python-markdown/
+  
+
+
