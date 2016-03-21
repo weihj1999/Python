@@ -193,7 +193,7 @@ CREATE TABLE todo (
   id serial primary key,
   title text,
   created timestamp default now(),
-  done boolean default 'f'    );
+  done boolean default 0    );
 
 然后初始化行:
 
@@ -218,8 +218,9 @@ $for todo in todos:
 </ul>
 
 再访问你的网站，然后你可以看到你的todo item: "Learn web.py"。恭喜你！你
-已经完整地写好了一个可以从数据库读取数据的程序。现在让我们同样再写一个可
-以把数据写入数据库的程序。
+已经完整地写好了一个可以从数据库读取数据的程序。
+
+现在让我们同样再写一个可以把数据写入数据库的程序。
 
 在 index.html尾部添加:
 

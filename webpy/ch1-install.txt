@@ -48,5 +48,26 @@ Markdown允许webpy用户写文本， 来个到转化的HTML文件来显示， �
   1. python-markdown [BSD] (doc)
   http://www.freewisdom.org/projects/python-markdown/
   
+以上是推荐的安装的组合配置。下面继续webpy的安装
 
+安装方法
+  1. 下载安装
+  http://webpy.org/static/web.py-0.37.tar.gz 或者获取github上最新的安
+  装 https://github.com/webpy/webpy/tarball/master 
+  解压缩后执行
+  #python setup.py install
+
+  2. easyinstall
+  easy_install web.py
+
+  3. PIP 
+  pip install web.py
+
+部署
+
+webpy带有一个内置的WEB服务器， 可以参考教程来编写一个应用， 依据编写的应用
+code.py来启动web 服务器
+#python code.py
+也可以指定特定的IP或者端口
+python code.py 1234
 
