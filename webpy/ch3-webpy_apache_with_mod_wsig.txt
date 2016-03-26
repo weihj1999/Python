@@ -57,3 +57,76 @@ For mod_wsgi performance, please refer to mod_wsgi wiki page:
 
 http://code.google.com/p/modwsgi/wiki/PerformanceEstimates
 
+Appendix: Install mod_wsgi on a linux distribution
+
+1. get the source code https://github.com/GrahamDumpleton/mod_wsgi/releases
+such as, I choose the latest:
+
+https://github.com/GrahamDumpleton/mod_wsgi/archive/4.4.21.tar.gz
+
+2. unpack it with command:
+#tar xvfz mod_wsgi-X.Y.tar.gz
+
+3. configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+ configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+ configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+ configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+ configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+ configure the source code
+# cd mod_wsgi-X.Y
+#./configure
+
+4. building the souce code
+#make
+and install the module to standard apache
+
+#make install
+
+5. Loaing the module to apache
+
+ 
