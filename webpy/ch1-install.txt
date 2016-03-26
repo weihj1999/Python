@@ -282,5 +282,13 @@ Common problems with WSGI application
 如果我们有静态CSS文件和图片需要传送，为每一个允许访问的路径复制带icon的行，
 
 
+补充1: 安装apache
+
+配置本地yum
+yum install httpd
+systemctl start httpd.service
+systemctl enable httpd.service
+
+
 
 
