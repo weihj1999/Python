@@ -129,4 +129,40 @@ and install the module to standard apache
 
 5. Loaing the module to apache
 
- 
+Notes:
+1. error: no acceptable C compiler found in $PATH
+
+solution: install gcc
+#yum install gcc -y 
+
+2. error: apxs command not found
+
+it is because apache delve package missed so 
+
+solution: install httpd-devel
+#yum install -y httpd-devel
+
+3. when install mod_wsgi successfully, you may get output like below;
+
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/lib64/httpd/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+
+
+
