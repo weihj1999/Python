@@ -15,6 +15,11 @@ ch1 安装必要的包
 mysqladmin -u root password 'root'
 如果是测试需要，设置为空也是可以的，建议设置一个容易记住的，做简单的防护。
 
+补充：在忘记密码的情况下，有很多种办法可以重置密码：
+
+http://lxsym.blog.51cto.com/1364623/477027
+
+
 2. 安装MySQL-python
 # yum install python-devel -y
 # yum install -y MySQL-python.x86_64
