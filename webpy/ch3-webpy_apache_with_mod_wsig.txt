@@ -38,6 +38,7 @@ It will install a '.so' module in Apache module directory. e.g.
 4. Point your browser to 'http://your_server_name/appname' to verify whether it works
 for you.
 
+
 Note:
 
 mod_wsgi + sessions
@@ -50,6 +51,22 @@ curdir = os.path.dirname(__file__)
 session = web.session.Session(app, web.session.DiskStore(os.path.join(curdir,'sessions')),)
 
 application = app.wsgifunc()
+
+着重补充两个在调试中遇到的的傻瓜问题：
+1. 我在调试的过程总使用了template，直接使用了调试好的python运行没有问题的代码，结果遇到的问题：
+no template named
+检查后发现 ： 原来代码里面使用的是相对路径，
+render = web.template.render('templates/')
+修改为绝对路径即可 
+render = web.template.render('/var/www/webpy-app/templates/')
+
+不过我相信apache＋mod_wsgi一定有使用相对路径的配置，后续调研吧
+I 
+2 另外一个傻瓜问题就是 
+Target WSGI script not found
+
+经检查发现 httpd.conf的配置文件中制定的code.py，结果真正实用的是code4.py，导致应用找不到正确的文件就会报这个错误了 
+
 
 mod_wsgi performance:
 

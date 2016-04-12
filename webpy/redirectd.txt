@@ -1,0 +1,28 @@
+
+Take hello world as example:
+
+import web
+
+urls = ("/.*", "hello")
+app = web.application(urls, globals())
+
+class hello:
+    def GET(self):
+        return 'Hello, world!'
+
+if __name__ == "__main__":
+    app.run()
+
+
+In order to ending with or w/o '/', adding the following to the begining of 
+urls:
+
+'/(.*)/', 'redirect', 
+
+and have the following class to handle those urls:
+
+class redirect:
+    def GET(self, path):
+        web.seeother('/' + path)
+
+
