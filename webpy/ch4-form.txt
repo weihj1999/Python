@@ -1,0 +1,164 @@
+
+
+Form
+
+大纲
+简介
+输入功能介绍
+下拉功能
+Form的功能
+例子
+
+
+简介
+webpy的form模块提供了产生html表单的能力，来获取用户的输入，并其在操作或者添加
+到数据库之前进行验证。
+
+form模块定义个两个主要的类： Form类和Input类。Input可以适用一到两个输入以及
+可选的验证器进行距离说明，Input可以使用一个名称变量和可选的参数，验证器来举例
+说明。
+
+Input类可以分成如下的子类：
+
+
+    Textbox - free form single line input (input type="text")
+    Password - free form single line that hides input (input type="password")
+    Textarea - free form multi line input (textarea)
+    Dropdown - mutually exclusive input for lists (select and options)
+    Radio - mutually exclusive input for a few options (input type="radio")
+    Checkbox - binary input (input type="checkbox")
+    Button - submit the form (button)
+
+一个简单的登录的表单看起来是这样的
+
+login = form.Form(
+    form.Textbox('username'),
+    form.Password('password'),
+    form.Button('Login'),
+)
+
+这就完成了一个基本的表单，一旦定义了，你就可以进行调用去得到一个可复制的实例，
+并且你可以对它调用render方法：
+
+f = login()
+print f.render()
+
+这会输入下面的html：
+
+<table>
+    <tr><th><label for="username">username</label></th><td><input type="text" id="username" name="username"/><div class="post" style="display: none;"></div></td></tr>
+    <tr><th><label for="password">password</label></th><td><input type="password" id="password" name="password"/><div class="post" style="display: none;"></div></td></tr>
+    <tr><th><label for="Login"></label></th><td><button id="Login" name="Login">Login</button><div class="post" style="display: none;"></div></td></tr>
+</table>
+
+看起来像这个样子
+
+form.jpg
+
+Input 功能
+
+form的Input支持多种额外的属性，比如
+
+form.textbox("firstname",
+    form.notnull, #put validators first followed by optional attributes
+    class_="textEntry", #gives a class name to the text box -- note the underscore
+    pre="pre", #directly before the text box
+    post="post", #directly after the text box
+    description="please enter your name", #describes field, defaults to form name ("firstname")
+    value="bob", #default value
+    id="nameid", #specify the id
+)
+
+除了上面的属性之外，任何html属性都可以以相同的方式输入到表格的属性中来：
+
+myform2 = form.Form(
+    form.textbox('phonenumber',
+        size="12",
+        maxlength="12"        )
+)
+
+
+下拉（DropDown）
+
+下来输入允许一个独一无二的描述，以及为每个下拉列表中的每个项目赋值。 为了达
+到这一点，像下面这样创建一个dropdown
+
+form.Dropdown('mydrop', [('value1', 'description1'), ('value2', 'description2')])
+
+Form的功能
+
+一些私有的input验证器，form.py支持整个表单的验证，允许比较字段，验证器得到一
+个像变量的输入，比如：
+
+signup = form.Form(
+    form.Textbox('username'),
+    form.Password('password'),
+    form.Password('password_again'),
+    validators = [form.Validator("Passwords didn't match.", lambda i: i.password == i.password_again)]
+)
+
+表单数据一旦提交（Posted），他就可以轻松的放进数据，前提是数据库的schemeyou这个和表单一直的设计，比如
+
+def POST(self):
+    f = myform()
+    if f.validates():
+        web.insert('data_table', **f.d)
+    #don't do web.insert('data_table', **web.input()) because malicious data could be submitted too
+    else:
+        render.foo(f)
+
+
+例子：
+
+import web
+from web import form
+
+render = web.template.render('templates/')
+
+urls = ('/', 'index')
+app = web.application(urls, globals())
+
+myform = form.Form( 
+    form.Textbox("boe"), 
+    form.Textbox("bax", 
+        form.notnull,
+        form.regexp('\d+', 'Must be a digit'),
+        form.Validator('Must be more than 5', lambda x:int(x)>5)),
+    form.Textarea('moe'),
+    form.Checkbox('curly'), 
+    form.Dropdown('french', ['mustard', 'fries', 'wine'])) 
+
+class index: 
+    def GET(self): 
+        form = myform()
+        # make sure you create a copy of the form by calling it (line above)
+        # Otherwise changes will appear globally
+        return render.formtest(form)
+
+    def POST(self): 
+        form = myform() 
+        if not form.validates(): 
+            return render.formtest(form)
+        else:
+            # form.d.boe and form['boe'].value are equivalent ways of
+            # extracting the validated arguments from the form.
+            return "Grrreat success! boe: %s, bax: %s" % (form.d.boe, form['bax'].value)
+
+if __name__=="__main__":
+    web.internalerror = web.debugerror
+    app.run()
+
+和formtest.html(同样的，不要忘了保存在templates子目录中哦)
+
+$def with (form)
+
+<form name="main" method="post"> 
+$if not form.valid: <p class="error">Try again, AmeriCAN:</p>
+$:form.render()
+<input type="submit" />    </form>
+
+
+
+
+
+
