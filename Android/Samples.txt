@@ -1,0 +1,26 @@
+Source Link:
+http://developer.android.com/samples/index.html
+
+what we can do here:
+1. browse sample code
+2. learn how to build componient for app
+每个例子都是一个完全功能的app，我们可以浏览resources，source files，可以看清
+整个项目的结构。如果需要，我们可以复制使用这些代码
+
+从github导入代码
+Andriod Studio提供了一个从github快速倒入代码的方法，这是最为推荐的方法。
+
+步骤：
+1. 在Android Studio菜单，点击File->Import Sample，打开导入例子的向导
+2. 选一个例子，然后点Next
+3. 指定应用的名字，项目的位置
+4. 点击Finish
+
+同样可以下载样例，然后导入下载后的包
+
+另外的一个中文教程网站
+
+http://www.runoob.com/w3cnote/android-tutorial-intro.html
+
+
+
